@@ -70,7 +70,7 @@ GROUP BY groups.id, groups.name;
 INSERT INTO people
             (first_name, last_name, father_name, group_id, type)
      VALUES
-            ('Алина', 'Муллагалиева', 'Шамильиевна', '1', 'S');
+            ('Лиза', 'Андреева', 'Дмитриевна', '602', 'S');
             
 -- 2. Добавить оценку по некоторому предмету студенту из п.1.
 INSERT INTO marks
@@ -78,9 +78,9 @@ INSERT INTO marks
      VALUES
             (
                 (SELECT id FROM people
-                WHERE first_name = 'Алина' AND last_name = 'Муллагалиева' AND father_name = 'Шамильиевна'),
-                1,
-                1,
+                WHERE first_name = 'Лиза' AND last_name = 'Андреева' AND father_name = 'Дмитриевна'),
+                14,
+                23,
                 5
             );
         
@@ -354,6 +354,100 @@ END;
 -- 2. то же, что и п.1, но, если в удаленной группе читались 3 предмета, которые больше нигде не читались – транзакцию откатить.
 -- кол-во предметов, для которых группа - одна и та же и только одна, равно 3.
 -- предмет - оценка - студент - группа
+DECLARE
+    groupToDelete NUMBER;
+    numOfStudents NUMBER;
+    tempStudentId NUMBER;
+    tmpNumber NUMBER;
+    counter NUMBER;
+ 
+    countOfSubjects NUMBER;
+    countOfGroups NUMBER;
+    subjectId NUMBER;
+    groupId NUMBER;
+ 
+    TYPE unique_subject_and_group IS RECORD
+                                     (SUBJECT_ID NUMBER, GROUP_ID NUMBER);
+    TYPE unique_subjects_type IS TABLE
+        OF unique_subject_and_group INDEX BY BINARY_INTEGER;
+    UNIQUE_SUBJECTS unique_subjects_type;
+    hasThreeUniqueSubjects EXCEPTION;
+ 
+BEGIN
+    --select group with min avg MARKS value
+    SELECT GROUPS.id INTO groupToDelete
+    FROM MARKS
+             JOIN PEOPLE ON MARKS.student_id = PEOPLE.id
+             JOIN GROUPS ON GROUPS.id = PEOPLE.GROUP_ID
+    GROUP BY GROUPS.id
+    ORDER BY AVG(MARKS.VALUE)
+    OFFSET 0 ROWS FETCH FIRST 1 ROWS ONLY;
+ 
+    --compute count of subjects
+    SELECT COUNT(DISTINCT SUBJECT_ID) INTO countOfSubjects FROM MARKS;
+    countOfSubjects := countOfSubjects - 1;
+ 
+    counter := 0;
+ 
+    FOR i IN 0..countOfSubjects LOOP
+            --select one different subject
+            SELECT DISTINCT SUBJECT_ID INTO subjectId FROM MARKS
+            ORDER BY SUBJECT_ID DESC
+            OFFSET i ROWS FETCH FIRST 1 ROWS ONLY;
+            --select count of GROUPS which learn the subject
+            SELECT COUNT(G.ID) INTO countOfGroups
+            FROM MARKS M
+                     JOIN PEOPLE P ON M.STUDENT_ID = P.ID
+                     JOIN GROUPS G on P.GROUP_ID = G.ID
+            WHERE SUBJECT_ID = subjectId
+            GROUP BY SUBJECT_ID;
+ 
+            IF countOfGroups = 1 THEN
+                --select id of unique group
+                SELECT GROUPS.ID INTO groupId FROM MARKS
+                                                       JOIN SUBJECTS ON SUBJECT_ID = SUBJECTS.ID AND SUBJECT_ID = subjectId
+                                                       JOIN PEOPLE ON STUDENT_ID = PEOPLE.ID
+                                                       JOIN GROUPS ON GROUP_ID = GROUPS.ID;
+                --insert (subject, unique group) to tmp table
+                UNIQUE_SUBJECTS(counter).SUBJECT_ID := subjectId;
+                UNIQUE_SUBJECTS(counter).GROUP_ID := groupId;
+                counter := counter + 1;
+            END IF;
+        END LOOP;
+    counter := -1;
+ 
+    tmpNumber := 0;
+    --if groupToDelete is group having three unique subjects
+    FOR j IN 0..counter LOOP
+            IF UNIQUE_SUBJECTS(j).GROUP_ID = groupToDelete THEN tmpNumber := tmpNumber + 1; END IF;
+        END LOOP;
+    IF tmpNumber = 3 THEN
+        RAISE hasThreeUniqueSubjects;
+    end if;
+ 
+    --select count of students in group with min avg value
+    SELECT COUNT(PEOPLE.id)
+    INTO numOfStudents
+    FROM PEOPLE
+             JOIN GROUPS ON PEOPLE.GROUP_ID = GROUPS.id
+    WHERE GROUPS.id = groupToDelete;
+    numOfStudents := numOfStudents - 1;
+ 
+    FOR i IN 0..numOfStudents LOOP
+            SELECT PEOPLE.id INTO tempStudentId
+            FROM PEOPLE
+                     JOIN GROUPS ON PEOPLE.GROUP_ID = GROUPS.id
+            WHERE GROUPS.id = groupToDelete
+            ORDER BY PEOPLE.id DESC
+            OFFSET 0 ROWS FETCH FIRST 1 ROWS ONLY;
+ 
+            DELETE FROM MARKS WHERE student_id = tempStudentId;
+            DELETE FROM PEOPLE WHERE id = tempStudentId;
+        END LOOP;
+    DELETE FROM GROUPS WHERE id = groupToDelete;
+ 
+    EXCEPTION WHEN hasThreeUniqueSubjects THEN ROLLBACK;
+END;
 
 
  /*
@@ -458,5 +552,4 @@ BEGIN
         ROLLBACK;
     END IF;
 END;
-
-
+    
