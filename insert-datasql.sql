@@ -2,20 +2,20 @@ INSERT INTO "C##MY_USER"."GROUPS" (NAME) VALUES ('3084/1_2005');
 INSERT INTO "C##MY_USER"."GROUPS" (NAME) VALUES ('2084/2_2005');
 INSERT INTO "C##MY_USER"."GROUPS" (NAME) VALUES ('4084/3_2006');
 
-INSERT INTO "C##MY_USER"."SUBJECTS" (NAME) VALUES ('Физика');
-INSERT INTO "C##MY_USER"."SUBJECTS" (NAME) VALUES ('Математика');
-INSERT INTO "C##MY_USER"."SUBJECTS" (NAME) VALUES ('Программирование');
-INSERT INTO "C##MY_USER"."SUBJECTS" (NAME) VALUES ('ООП');
+INSERT INTO "C##MY_USER"."SUBJECTS" (NAME) VALUES ('пїЅпїЅпїЅпїЅпїЅпїЅ');
+INSERT INTO "C##MY_USER"."SUBJECTS" (NAME) VALUES ('пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ');
+INSERT INTO "C##MY_USER"."SUBJECTS" (NAME) VALUES ('пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ');
+INSERT INTO "C##MY_USER"."SUBJECTS" (NAME) VALUES ('пїЅпїЅпїЅ');
 
-INSERT INTO "C##MY_USER"."PEOPLE" (FIRST_NAME, LAST_NAME, FATHER_NAME, GROUP_ID, TYPE) VALUES ('Георгий', 'Голиков', 'Дмитриевич', '601', 'S');
-INSERT INTO "C##MY_USER"."PEOPLE" (FIRST_NAME, LAST_NAME, FATHER_NAME, GROUP_ID, TYPE) VALUES ('Ярослав', 'Пылаев', 'Сергеевич', '602', 'S');
-INSERT INTO "C##MY_USER"."PEOPLE" (FIRST_NAME, LAST_NAME, FATHER_NAME, GROUP_ID, TYPE) VALUES ('Филипп', 'Трофимов', 'Олегович', '3', 'S');
-INSERT INTO "C##MY_USER"."PEOPLE" (FIRST_NAME, LAST_NAME, FATHER_NAME, TYPE) VALUES ('Борис', 'Попов', 'Петрович', 'T');
-INSERT INTO "C##MY_USER"."PEOPLE" (FIRST_NAME, LAST_NAME, FATHER_NAME, TYPE) VALUES ('Надежда', 'Солева', 'Юрьевна', 'T');
-INSERT INTO "C##MY_USER"."PEOPLE" (FIRST_NAME, LAST_NAME, FATHER_NAME, TYPE) VALUES ('Алексей', 'Мартынов', 'Валерьевич', 'T');
-INSERT INTO "C##MY_USER"."PEOPLE" (FIRST_NAME, LAST_NAME, FATHER_NAME, GROUP_ID, TYPE) VALUES ('Дмитрий', 'Неупокоев', 'Андреевич', '601', 'S');
-INSERT INTO "C##MY_USER"."PEOPLE" (FIRST_NAME, LAST_NAME, FATHER_NAME, GROUP_ID, TYPE) VALUES ('Валерия', 'Лукина', 'Александр', '601', 'S');
-INSERT INTO "C##MY_USER"."PEOPLE" (FIRST_NAME, LAST_NAME, FATHER_NAME, GROUP_ID, TYPE) VALUES ('Алина', 'Муллагали', 'Шамильевна', '601', 'S');
+INSERT INTO "C##MY_USER"."PEOPLE" (FIRST_NAME, LAST_NAME, FATHER_NAME, GROUP_ID, TYPE) VALUES ('пїЅпїЅпїЅпїЅпїЅпїЅпїЅ', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', '601', 'S');
+INSERT INTO "C##MY_USER"."PEOPLE" (FIRST_NAME, LAST_NAME, FATHER_NAME, GROUP_ID, TYPE) VALUES ('пїЅпїЅпїЅпїЅпїЅпїЅпїЅ', 'пїЅпїЅпїЅпїЅпїЅпїЅ', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', '602', 'S');
+INSERT INTO "C##MY_USER"."PEOPLE" (FIRST_NAME, LAST_NAME, FATHER_NAME, GROUP_ID, TYPE) VALUES ('пїЅпїЅпїЅпїЅпїЅпїЅ', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', '3', 'S');
+INSERT INTO "C##MY_USER"."PEOPLE" (FIRST_NAME, LAST_NAME, FATHER_NAME, TYPE) VALUES ('пїЅпїЅпїЅпїЅпїЅ', 'пїЅпїЅпїЅпїЅпїЅ', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', 'T');
+INSERT INTO "C##MY_USER"."PEOPLE" (FIRST_NAME, LAST_NAME, FATHER_NAME, TYPE) VALUES ('пїЅпїЅпїЅпїЅпїЅпїЅпїЅ', 'пїЅпїЅпїЅпїЅпїЅпїЅ', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ', 'T');
+INSERT INTO "C##MY_USER"."PEOPLE" (FIRST_NAME, LAST_NAME, FATHER_NAME, TYPE) VALUES ('пїЅпїЅпїЅпїЅпїЅпїЅпїЅ', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', 'T');
+INSERT INTO "C##MY_USER"."PEOPLE" (FIRST_NAME, LAST_NAME, FATHER_NAME, GROUP_ID, TYPE) VALUES ('пїЅпїЅпїЅпїЅпїЅпїЅпїЅ', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', '601', 'S');
+INSERT INTO "C##MY_USER"."PEOPLE" (FIRST_NAME, LAST_NAME, FATHER_NAME, GROUP_ID, TYPE) VALUES ('пїЅпїЅпїЅпїЅпїЅпїЅпїЅ', 'пїЅпїЅпїЅпїЅпїЅпїЅ', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', '601', 'S');
+INSERT INTO "C##MY_USER"."PEOPLE" (FIRST_NAME, LAST_NAME, FATHER_NAME, GROUP_ID, TYPE) VALUES ('пїЅпїЅпїЅпїЅпїЅ', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ', '601', 'S');
 
 INSERT INTO "C##MY_USER"."MARKS" (STUDENT_ID, SUBJECT_ID, TEACHER_ID, VALUE) VALUES ('75', '14', '23', '5');
 INSERT INTO "C##MY_USER"."MARKS" (STUDENT_ID, SUBJECT_ID, TEACHER_ID, VALUE) VALUES ('76', '11', '24', '5');

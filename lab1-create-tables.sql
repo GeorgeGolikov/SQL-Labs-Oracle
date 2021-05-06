@@ -1,5 +1,5 @@
 /*
-    Создание таблиц и добавление первичных ключей
+
 */
 
 -- groups
@@ -51,7 +51,7 @@ ADD CONSTRAINT subjects_pk PRIMARY KEY (id);
 
 
 /*
-    Создание связей между таблицами
+
 */
 
 -- people - groups
