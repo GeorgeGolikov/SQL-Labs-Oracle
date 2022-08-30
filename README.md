@@ -1,2 +1,2 @@
-# SQL-practice-oracle
+# SQL-Labs-Oracle
 SQL labs on Oracle SQL in SPbSTU
